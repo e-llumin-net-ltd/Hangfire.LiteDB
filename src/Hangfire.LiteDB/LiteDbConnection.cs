@@ -6,7 +6,6 @@ using Hangfire.Common;
 using Hangfire.LiteDB.Entities;
 using Hangfire.Server;
 using Hangfire.Storage;
-using LiteDB;
 
 namespace Hangfire.LiteDB
 {
@@ -305,7 +304,7 @@ namespace Hangfire.LiteDB
             return Database
                 .StateDataSet
                 .Find(_ => _.Key == key &&
-                      _.Score == fromScore &&
+                      Math.Abs(_.Score - fromScore) < 0.01 &&
                        _.Score <= toScore)
                 .OrderBy(_ => _.Score)
                 .Select(_ => _.Value)
