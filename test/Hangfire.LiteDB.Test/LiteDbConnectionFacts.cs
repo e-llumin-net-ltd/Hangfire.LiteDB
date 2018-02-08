@@ -163,7 +163,7 @@ namespace Hangfire.LiteDB.Test
 
                 var parameters = database
                     .Job
-                    .Find(_ => _.IdString==jobId)
+                    .Find(_ => _.Id==int.Parse(jobId))
                     .Select(j => j.Parameters)
                     .ToList()
                     .SelectMany(j => j)

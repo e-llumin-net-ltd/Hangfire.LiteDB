@@ -70,7 +70,7 @@ namespace Hangfire.LiteDB
                 CreatedAt = createdAt,
                 ExpireAt = createdAt.Add(expireIn)
             };
-
+            
             Database.Job.Insert(jobDto);
 
             var jobId = jobDto.Id;
